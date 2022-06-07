@@ -78,6 +78,14 @@ function populateChart() {
   });
 }
 
+function fundsAlert(fundsAdded){
+  if(fundsAdded){
+    alert('Funds have been added to your tracker');
+  } else {
+    alert('Funds have been deducted to your tracker');
+  }
+};
+
 function sendTransaction(isAdding) {
   let nameEl = document.querySelector("#t-name");
   let amountEl = document.querySelector("#t-amount");
@@ -90,6 +98,7 @@ function sendTransaction(isAdding) {
   }
   else {
     errorEl.textContent = "";
+    fundsAlert(isAdding);
   }
 
   // create record
@@ -122,7 +131,7 @@ function sendTransaction(isAdding) {
     }
   })
   .then(response => {    
-    return response.json();
+      return response.json();
   })
   .then(data => {
     if (data.errors) {
